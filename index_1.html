@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زينة وخزينة — حاتم القرني</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #000000;
+    --ink: #ffffff;
+    --line: rgba(255,255,255,0.6);
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Tajawal', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ===== Slide Container ===== */
+  .slide {
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+  }
+
+  /* ===== Top Year Bar ===== */
+  .year-bar {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    right: 80px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+  }
+
+  .year-bar.bottom {
+    top: auto;
+    bottom: 40px;
+  }
+
+  .year-bar .year {
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .year-bar .line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ===== Cover Slide ===== */
+  .cover-content {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+  }
+
+  .cover-image {
+    position: relative;
+    width: 580px;
+    max-width: 45vw;
+    aspect-ratio: 1/1;
+    background-image: url('images/cover-vault.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+  }
+
+  .cover-title-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+  }
+
+  .cover-title {
+    font-size: clamp(80px, 11vw, 180px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -2px;
+    white-space: nowrap;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+
+  .cover-subtitle {
+    font-size: clamp(16px, 1.4vw, 22px);
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== Top Header (small label) ===== */
+  .slide-header {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    right: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    z-index: 10;
+  }
+
+  .slide-header .label {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+
+  .slide-header .line {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ===== Quote Slide ===== */
+  .quote-content {
+    max-width: 1100px;
+    text-align: center;
+    padding: 0 40px;
+  }
+
+  .quote-text {
+    font-size: clamp(28px, 3.5vw, 52px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  .quote-text .highlight {
+    font-weight: 700;
+  }
+
+  /* ===== Timeline Slide ===== */
+  .timeline-content {
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 40px;
+  }
+
+  .timeline-wrapper {
+    position: relative;
+    padding: 60px 0;
+  }
+
+  .timeline-line-h {
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    left: 60px;
+    height: 1px;
+    background: var(--line);
+    transform: translateY(-50%);
+  }
+
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    position: relative;
+  }
+
+  .timeline-station {
+    text-align: center;
+    position: relative;
+    padding: 0 8px;
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--ink);
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .timeline-text-above,
+  .timeline-text-below {
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 400;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 4px;
+  }
+
+  .timeline-text-above {
+    align-items: flex-end;
+  }
+
+  .timeline-text-below {
+    align-items: flex-start;
+  }
+
+  /* ===== Words Slide ===== */
+  .words-content {
+    max-width: 1200px;
+    padding: 0 40px;
+    text-align: right;
+  }
+
+  .words-title {
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 30px;
+  }
+
+  .words-text {
+    font-size: clamp(22px, 2.5vw, 38px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.8;
+  }
+
+  /* ===== Statement Slide ===== */
+  .statement-content {
+    max-width: 1200px;
+    padding: 0 40px;
+    text-align: right;
+  }
+
+  .statement-title {
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 24px;
+    display: inline-block;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 16px;
+  }
+
+  .statement-text {
+    font-size: clamp(22px, 2.5vw, 38px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-top: 30px;
+  }
+
+  /* ===== Chapter Slide ===== */
+  .chapter-content {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+  }
+
+  .chapter-title {
+    font-size: clamp(40px, 6vw, 90px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    text-align: right;
+    flex: 1;
+  }
+
+  .chapter-divider {
+    width: 1px;
+    height: 180px;
+    background: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .chapter-number {
+    font-size: clamp(80px, 11vw, 180px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  /* ===== Project Slide ===== */
+  .project-slide {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .project-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .project-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+  }
+
+  .project-top-line {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    right: 80px;
+    height: 1px;
+    background: var(--line);
+    z-index: 5;
+  }
+
+  .project-bottom-line {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+    right: 80px;
+    height: 1px;
+    background: var(--line);
+    z-index: 5;
+  }
+
+  .project-year {
+    position: absolute;
+    bottom: 50px;
+    left: 80px;
+    color: var(--ink);
+    font-size: 16px;
+    z-index: 6;
+  }
+
+  .project-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 80px;
+  }
+
+  .project-data {
+    width: 42%;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 24px;
+  }
+
+  .project-data .full-row {
+    grid-column: span 2;
+  }
+
+  .project-field-label {
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .project-field-label::before {
+    content: '*';
+    color: var(--ink);
+  }
+
+  .project-field-value {
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .project-field-value.about {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+
+  .play-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 12px;
+    transition: all 0.3s;
+    width: fit-content;
+  }
+
+  .play-button:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+
+  .play-button .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 14px 8px 0;
+    border-color: transparent var(--ink) transparent transparent;
+  }
+
+  .project-logo {
+    position: absolute;
+    top: 70px;
+    right: 80px;
+    z-index: 5;
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* ===== Music Project Slide ===== */
+  .music-content {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .music-text {
+    font-size: clamp(20px, 2.2vw, 32px);
+    color: var(--ink);
+    line-height: 1.8;
+    font-weight: 400;
+    text-align: right;
+  }
+
+  .music-title {
+    font-size: clamp(24px, 2.8vw, 38px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    text-align: right;
+  }
+
+  /* ===== About Hatem - 3 Columns ===== */
+  .about-content {
+    width: 100%;
+    max-width: 1500px;
+    padding: 60px 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    direction: rtl;
+  }
+
+  .about-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-right: 1px solid var(--line);
+    padding-right: 30px;
+  }
+
+  .about-col:first-child {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .about-col-title {
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .about-col-text {
+    font-size: clamp(15px, 1.2vw, 18px);
+    color: var(--ink);
+    line-height: 1.9;
+    font-weight: 400;
+  }
+
+  .about-col-text + .about-col-text {
+    margin-top: 16px;
+  }
+
+  .about-col-text .label-bold {
+    font-weight: 700;
+  }
+
+  /* ===== Final Question Slide ===== */
+  .final-content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .final-title {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 30px;
+  }
+
+  .final-question {
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-bottom: 50px;
+  }
+
+  .final-topics {
+    font-size: clamp(20px, 2.4vw, 32px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.7;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .final-contact {
+    position: absolute;
+    bottom: 70px;
+    left: 80px;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    direction: ltr;
+  }
+
+  .final-contact a {
+    color: var(--ink);
+    text-decoration: underline;
+    font-size: 15px;
+    transition: opacity 0.3s;
+  }
+
+  .final-contact a:hover {
+    opacity: 0.6;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .slide { padding: 40px 24px; }
+    .year-bar { left: 24px; right: 24px; top: 24px; }
+    .year-bar.bottom { bottom: 24px; }
+    .slide-header { left: 24px; right: 24px; top: 24px; }
+    .cover-image { width: 90vw; max-width: 90vw; }
+    .cover-title { font-size: 56px; letter-spacing: -1px; }
+    .cover-subtitle { font-size: 14px; margin-top: 16px; }
+    .quote-content { padding: 0 16px; }
+    .quote-text { font-size: 22px; line-height: 1.6; }
+    .timeline-content { padding: 0 8px; }
+    .timeline-grid { grid-template-columns: 1fr; gap: 30px; }
+    .timeline-line-h { display: none; }
+    .timeline-text-above, .timeline-text-below { min-height: auto; padding: 12px 0; font-size: 14px; }
+    .words-content { padding: 0 16px; }
+    .words-title { font-size: 28px; }
+    .words-text { font-size: 17px; line-height: 1.7; }
+    .statement-content { padding: 0 16px; }
+    .statement-title { font-size: 26px; padding-bottom: 12px; }
+    .statement-text { font-size: 17px; margin-top: 20px; }
+    .chapter-content { padding: 0 16px; flex-direction: row-reverse; gap: 20px; }
+    .chapter-title { font-size: 28px; }
+    .chapter-number { font-size: 70px; }
+    .chapter-divider { height: 100px; }
+    .project-content { padding: 80px 24px; }
+    .project-top-line, .project-bottom-line { left: 24px; right: 24px; }
+    .project-year { left: 24px; }
+    .project-logo { top: 60px; right: 24px; max-width: 130px; }
+    .project-data { width: 100%; grid-template-columns: 1fr; gap: 20px; }
+    .project-bg::after { background: rgba(0,0,0,0.75); }
+    .music-content { grid-template-columns: 1fr; gap: 24px; padding: 0 16px; }
+    .music-text { font-size: 16px; }
+    .music-title { font-size: 22px; }
+    .about-content { grid-template-columns: 1fr; gap: 40px; padding: 40px 16px 0; }
+    .about-col { border-right: none; padding-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 30px; }
+    .about-col:last-child { border-bottom: none; }
+    .about-col-title { font-size: 19px; }
+    .about-col-text { font-size: 15px; }
+    .final-content { padding: 0 20px; }
+    .final-title { font-size: 26px; margin-bottom: 20px; }
+    .final-question { font-size: 19px; margin-bottom: 30px; }
+    .final-topics { font-size: 16px; }
+    .final-contact { left: 24px; bottom: 60px; }
+    .final-contact a { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Slide 01: Cover ===== -->
+<section class="slide">
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="cover-content">
+    <div class="cover-image"></div>
+    <div class="cover-title-block">
+      <h1 class="cover-title">زينة وخزينة</h1>
+      <p class="cover-subtitle">للأعمال اللي أفتخر و أحتفظ فيها</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Slide 02: Quote ===== -->
+<section class="slide">
+  <div class="slide-header">
+    <span class="label">اللي مايغبّر شاربه ما يدسّمه</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="quote-content">
+    <p class="quote-text">
+      <span class="highlight">اللي مايغبّر شاربه ما يدسّمه،</span> مثل معروف والكل يسمعه وعلى هذا الأساس أخذت منهج واضح في مسيرتي، وهذا اللي خلاني أطلع بهذي المحطات...
+    </p>
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 03: Timeline ===== -->
+<section class="slide">
+  <div class="slide-header">
+    <span class="label">اللي مايغبّر شاربه ما يدسّمه</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="timeline-content">
+    <div class="timeline-wrapper">
+      <div class="timeline-line-h"></div>
+      <div class="timeline-grid">
+
+        <!-- المحطة 1 (يمين) -->
+        <div class="timeline-station">
+          <div class="timeline-text-above"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text-below">
+            بعت تمر في محل عمي<br>"لمدة سنة"
+          </div>
+        </div>
+
+        <!-- المحطة 2 -->
+        <div class="timeline-station">
+          <div class="timeline-text-above">
+            توظفت كطالب<br>في اكسير البن<br>"لمدة أربع سنوات"
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text-below"></div>
+        </div>
+
+        <!-- المحطة 3 -->
+        <div class="timeline-station">
+          <div class="timeline-text-above"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text-below">
+            أسست منصة<br>أسمها تُرث تكتب<br>فيها محتوى تراثي
+          </div>
+        </div>
+
+        <!-- المحطة 4 -->
+        <div class="timeline-station">
+          <div class="timeline-text-above">
+            اشتغلت مع رفيوز ومجاز<br>وقناة الثقافية وصناع<br>محتوى فالكونز "لمدة سنة<br>فريلانسر"
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text-below"></div>
+        </div>
+
+        <!-- المحطة 5 -->
+        <div class="timeline-station">
+          <div class="timeline-text-above"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text-below">
+            اشتغلت مع مقهى حزة<br>وسلام في كتابة<br>فيديوهات لحساباتهم
+          </div>
+        </div>
+
+        <!-- المحطة 6 (يسار) -->
+        <div class="timeline-station">
+          <div class="timeline-text-above">
+            واليوم أنا في DNA<br>كاتب محتوى إبداعي<br>"من سنة"
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-text-below"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 04: Quote 2 ===== -->
+<section class="slide">
+  <div class="slide-header">
+    <span class="label">اللي مايغبّر شاربه ما يدسّمه</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="quote-content">
+    <p class="quote-text">
+      هذي حصيلة 4 سنوات من تغبيرة الشارب وباقي أتوقع ما طلعت منها وما خلصت...
+    </p>
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 05: Words ===== -->
+<section class="slide">
+  <div class="slide-header">
+    <span class="label">مين حاتم ؟</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="words-content">
+    <h2 class="words-title">حاتم هو هذي الكلمات...</h2>
+    <p class="words-text">
+      كتابة، أغاني، روقان، بر، رياكشنات، ركض، رياضة، سفر، سهر، تحدي، خيال، بسيط، تراث، ثقافة، فضول، نشبه، سريع، مبادر، حار، مرن، باحث، بصري، طموح، هادئ، مبدع، واضح، مباشر، ضحك، مغامر، صديق، تطور، إلهام، شاطح، داعس
+    </p>
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 06: Statement (Volume vs Quality) ===== -->
+<section class="slide">
+  <div class="slide-header">
+    <span class="label">بالكم ولا بالكيف؟</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="statement-content">
+    <h2 class="statement-title">الكتابة الإبداعية بالكم ولا بالكيف؟</h2>
+    <p class="statement-text">
+      إذا هي بالكم خلال سنة 2025-2026 كتبة أكثر من +42 ملف إبداعي بكل التوجهات اللي تطري على بالك
+    </p>
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 07: Statement (Quality intro) ===== -->
+<section class="slide">
+  <div class="slide-header">
+    <span class="label">بالكم ولا بالكيف؟</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="statement-content">
+    <h2 class="statement-title">الكتابة الإبداعية بالكم ولا بالكيف؟</h2>
+    <p class="statement-text">
+      ولو كانت بالكيف و الروقان خلوني أشارك معكم أهم الأعمال اللي أفتخر أني اشتغلت عليها...
+    </p>
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 08: Chapter 01 ===== -->
+<section class="slide">
+  <div class="year-bar">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="chapter-content">
+    <h2 class="chapter-title">
+      أعمال الزينة والفخر<br>"والهاي هاي"
+    </h2>
+    <div class="chapter-divider"></div>
+    <div class="chapter-number">01</div>
+  </div>
+</section>
+
+<!-- ===== Slide 09: Project - Aramco ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/aramco.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل عاطفي لحملة أرامكو الخيرية في شهر رمضان، يجسد العمل روح الخير المزروعة في موظفين أرامكو وإدارتها
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">#خيرك_حاضر</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">عاطفي، خيري</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">شهر رمضان</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة والمشاهد و الفيس أوفر والمتابعة مع المخرج</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2026 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">ركان العتيبي</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://x.com/saudi_aramco/status/2030671440899621346" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 10: Project - Sayyar ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/sayyar.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل كوميدي سلطنا فيه الضوء على قوة ثيرمل سيار وكيف قرار بسيط مثل أنك تلبس ثيرمل بجودة عالية ممكن يغير موازين التاريخ
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">#درعك_ضد_البرد</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">كوميدي، تسويقي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">بداية موسم الشتاء</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة المشاهد والتعديل على الحوارات، إضافة إلى العمل على التفعيلات</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2026 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">محمد الملا</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://youtu.be/roZImhdYYr8?si=1qSQUWMoyoY7apla" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 11: Project - National Guard ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/hars-watani.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل وطني يجسد روح القوة والإعتزاز بجنودنا البواسل
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">#صمام_الأمان</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">وطني، فخري</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">اليوم الوطني السعودي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">معالجة الفكرة، تطويرها، إنشاء الموسيقى التصويرية</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">محمد الملا</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://youtu.be/AnVojsXwxe4?si=FwVnxUIyWJKrvHPM" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 12: Project - GOSI ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/gosi.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل يعكس روح العطاء في الأجيال السعودية وقوة الإصرار والعزيمة من أجل تحقيق الأحلام
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">#جيل_يكمل_جيل</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">وطني، فخري، عاطفي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">اليوم الوطني السعودي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة المشاهد، تطوير فكرة العميل</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">محمد الملا</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://youtu.be/mYPV2Qp8elo?si=lt8nzvv-IXkWt_n4" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 13: Chapter 02 ===== -->
+<section class="slide">
+  <div class="year-bar">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="chapter-content">
+    <h2 class="chapter-title">
+      أعمال الروقان<br>واللعب الحبي
+    </h2>
+    <div class="chapter-divider"></div>
+    <div class="chapter-number">02</div>
+  </div>
+</section>
+
+<!-- ===== Slide 14: Project - WBJ يفهمك ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/wbj-yfhmk.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل يركز على فكرة أن المطعم اللي تحبه مارح يخذلك مهما انخذلت من البشر
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">wbj_يفهمك</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">عاطفي، حزين</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة والعمل على تطوير المشاهد والتعليق الصوتي والمتابعة مع المخرج</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">يوسف الحري</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://vt.tiktok.com/ZSm4Q4GUy/" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 15: Project - Aywa Charisma ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/aywa-charisma.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل تتمحور فكرته حول كيف أن الأشياء البسيطة تعطيك شعور فخم إذا أخذتها من المكان الصح
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">أبوا_فل_كاريزما</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">مرح، فخم</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة والعمل على تطوير المشاهد والمتابعة مع المخرج</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">يوسف الحري</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://www.tiktok.com/@bo3omar22/video/7578556079009828151" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 16: Project - Hazza Sanawiya ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/hazza-sanawiya.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل هادي، رايق، عكسنا فيه مكان وطابع القهوة الهادية
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">حز المكان اللي تحبه كمل سنة</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">عاطفي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">سنوية القهوة</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة وتطوير النص، وبناء تسلسل للمشاهد</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2024 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">عبدالعزيز باسهيل</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://www.instagram.com/reel/DDPbLmIIMz7/" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 17: Project - Hazza Hayyakum ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/hazza-hayyakum.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل يعكس روح وطابع حزة، "مكان كأنه بيت"
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">حياكم</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">عاطفي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">إفتتاح الفرع الجديد</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة، المشاهد</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">عبدالعزيز باسهيل</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://www.instagram.com/reel/DK68Syzo60q/" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 18: Project - Salam ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/salam.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل يدمج بين إنجازات المقهى والفرع الجديد بروح رواد وعشاق القهوة
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">مقهى الأبطال</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">فخر، عاطفي</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">إفتتاح الفرع الجديد</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة والنص</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">عبدالعزيز باسهيل</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://www.instagram.com/reel/DLC4bHdIab0/" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 19: Project - Jathr ===== -->
+<section class="slide project-slide">
+  <div class="project-bg" style="background-image: url('images/jathr.jpg');"></div>
+  <div class="project-top-line"></div>
+
+  <div class="project-content">
+    <div class="project-data">
+
+      <div class="full-row">
+        <div class="project-field-label">عن العمل:</div>
+        <div class="project-field-value about">
+          عمل بمناسبة الإفتتاح لمقهى جذر نجسد فيه جودة القهوة وروح المكان
+        </div>
+      </div>
+
+      <div>
+        <div class="project-field-label">رسالة الحملة:</div>
+        <div class="project-field-value">إعلان صامت "بدون رسالة"</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">التصنيف:</div>
+        <div class="project-field-value">مرح</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُناسبة:</div>
+        <div class="project-field-value">الإفتتاح</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">دور أبو حمدان في المشروع:</div>
+        <div class="project-field-value">كتابة الفكرة، وتسلسل المشاهد</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">سنة الإنتاج:</div>
+        <div class="project-field-value">2025 م</div>
+      </div>
+
+      <div>
+        <div class="project-field-label">الـمُخرج:</div>
+        <div class="project-field-value">عبدالعزيز باسهيل</div>
+      </div>
+
+      <div class="full-row">
+        <a href="https://www.instagram.com/reel/DEsSFRYKA0U/" target="_blank" class="play-button">
+          <span class="triangle"></span>
+          أرعص هنا تطير للإعلان
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="project-bottom-line"></div>
+  <span class="project-year">2026</span>
+</section>
+
+<!-- ===== Slide 20: Chapter 03 ===== -->
+<section class="slide">
+  <div class="year-bar">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="chapter-content">
+    <h2 class="chapter-title">
+      وقت الطفش<br>والفراغ
+    </h2>
+    <div class="chapter-divider"></div>
+    <div class="chapter-number">03</div>
+  </div>
+</section>
+
+<!-- ===== Slide 21: Music Producer - National Guard ===== -->
+<section class="slide">
+  <div class="music-content">
+
+    <div class="music-text">
+      ما أعرف امسك أرضي، طُلب مني أني أتخيل الموسيقى كيف بتكون لإعلان وزارة الحرس الوطني وقررت أني أشارك فيه وأنا ماعمري عزفت. جمعت أصوات على بعض و عدلنا عليها وطلعنا بشيء رهيب !
+    </div>
+
+    <h2 class="music-title">حاتم كـ منتج موسيقي !</h2>
+
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 22: Music Producer - Tihama AI Song ===== -->
+<section class="slide">
+  <div class="music-content">
+
+    <div class="music-text">
+      أغنية عن تهامة وديرتي بالذكاء الاصطناعي واختلقت لها قصة سائح أنبهر بتهامة وراح سوا عنها أغنية
+    </div>
+
+    <h2 class="music-title">حاتم كـ منتج موسيقي !</h2>
+
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 23: Chapter 04 ===== -->
+<section class="slide">
+  <div class="year-bar">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+
+  <div class="chapter-content">
+    <h2 class="chapter-title">
+      عن حاتم<br>وطموح حاتم
+    </h2>
+    <div class="chapter-divider"></div>
+    <div class="chapter-number">04</div>
+  </div>
+</section>
+
+<!-- ===== Slide 24: About Hatem - 3 Columns ===== -->
+<section class="slide">
+
+  <div class="about-content">
+
+    <!-- العمود الأول (يمين) -->
+    <div class="about-col">
+      <h3 class="about-col-title">انا وين الحين و وين أبي أوصل...</h3>
+      <p class="about-col-text">
+        انا أشوف نفسي في مرحلة كويسة أسميها نص الطريق ،أبي أتعلم زيادة أبي أصول مرحلة أكون فيها في يوم من الأيام مدير إبداعي فلته، أدري أن الطريق قدامي صعب وطويل بس نرجع ونقول...
+        <br><br>
+        <span class="label-bold">"من لايغبّر شاربه ما يدسّمه"</span>
+      </p>
+    </div>
+
+    <!-- العمود الثاني (نص) -->
+    <div class="about-col">
+      <h3 class="about-col-title">وش اللي أحبه و ما أحبه في نفسي</h3>
+      <p class="about-col-text">
+        <span class="label-bold">اللي أحبه:</span> الصملة، الإلتزام بالوقت والموعد، أخذ العمل على محمل جدي دائمًا، ما ألف و أدور، وأعترف بخطاي إذا أخطيت و أعتذر
+      </p>
+      <p class="about-col-text">
+        <span class="label-bold">اللي ما أحبه:</span> أتنرفز بسرعة من الباردين، أبي الأشخاص اللي اشتغلت معهم يصيرون نفس جديتي في العمل، صريح بشكل مباشر
+      </p>
+    </div>
+
+    <!-- العمود الثالث (يسار) -->
+    <div class="about-col">
+      <h3 class="about-col-title">وش يميزني عن الكتاب اللي في السوق؟</h3>
+      <p class="about-col-text">
+        قوي في الـ AI، نفسي طويل مع العملاء، مسّكني الطريق وأزهل، أتعامل مع الأشخاص بالمرجلة ثم الشغل والقوانين، أكتب من صلب المجتمع، مرن
+      </p>
+    </div>
+
+  </div>
+
+  <div class="year-bar bottom">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ===== Slide 25: Final Question ===== -->
+<section class="slide">
+
+  <div class="final-content">
+    <h2 class="final-title">السؤال الأخير</h2>
+    <p class="final-question">وش نسولف فيه في جلستنا الجاية؟</p>
+    <p class="final-topics">
+      الموسيقى العربية، الفن، الكتب، صناعة المحتوى، الساعات، الركض،الأفلام، السفر، الفكر الإبداعي، حياة المدينة، الكتابة
+    </p>
+  </div>
+
+  <div class="final-contact">
+    <a href="tel:0580592083">0580592083</a>
+    <a href="mailto:alqrnihatam@gmail.com">alqrnihatam@gmail.com</a>
+  </div>
+
+  <div class="year-bar">
+    <span class="year">2026</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+</body>
+</html>
